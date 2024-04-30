@@ -14,7 +14,17 @@
 
     <div id="subheader">
         <div class="cart">
-            Your cart is empaty
+            {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    Carrito
+                    <a href="{% url "cart:cart_detalle" %}">
+                        {{ total_items }} item{{ total_items|pluralize }},
+                        ${{ cart.get_total_price }}
+                        </a>
+                {% elif not order %}
+                    Your cart is empty.
+                {% endif %}
+            {% endwith %}
         </div>
     </div>
     <div id="content">
