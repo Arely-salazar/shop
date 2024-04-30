@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Your shopping cart</h1>
+    <h1>Su cesta de la compra</h1>
     <table class="cart">
         <thead>
             <tr>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             {% for item in cart %}
-                {% with product=item.producto %}
+                {% with producto=item.producto %}
                     <tr>
                         <td>
                             <a href="{{ producto.get_absolute_url }}">

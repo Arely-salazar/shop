@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404  
 from .models import Categoria, Producto
+from cart.forms import CartAddProductForm
 
 # Create your views here.
 def producto_lista(request, categoria_slug=None):
@@ -21,9 +22,11 @@ def producto_detalle(request, id, slug):
                                  id=id, 
                                  slug=slug, 
                                  disponibilidad=True)
+    cart_product_form = CartAddProductForm()
     
     return render(request, 
                   'shop/producto/detalle.html',
-                  {'producto':producto})
+                  {'producto':producto,
+                   'cart_product_form': cart_product_form})
 
 #http://127.0.0.1:800/

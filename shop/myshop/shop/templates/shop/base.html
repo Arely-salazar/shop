@@ -16,10 +16,10 @@
         <div class="cart">
             {% with total_items=cart|length %}
                 {% if total_items > 0 %}
-                    Carrito
+                    Cesta
                     <a href="{% url "cart:cart_detalle" %}">
-                        {{ total_items }} item{{ total_items|pluralize }},
-                        ${{ cart.get_total_price }}
+                        {{ total_items }} Producto {{ total_items|pluralize }},
+                        ${{ cart.get_total_precio }}
                         </a>
                 {% elif not order %}
                     Your cart is empty.
