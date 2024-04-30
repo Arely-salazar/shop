@@ -5,16 +5,16 @@ from .models import Categoria, Producto
 def producto_lista(request, categoria_slug=None):
     categoria = None
     categorias = Categoria.objects.all()
-    producto = Producto.objects.filter(disponibilidad=True)
+    productos = Producto.objects.filter(disponibilidad=True)
 
     if categoria_slug:
         categoria = get_object_or_404(Categoria, slug=categoria_slug)
-        producto = producto.filter(categoria=categoria)
+        productos = productos.filter(categoria=categoria)
     return render(request, 
                   'shop/producto/lista.html',
                   {'categoria':categoria,
                    'categorias': categorias,
-                   'productos': producto})
+                   'productos': productos})
 
 def producto_detalle(request, id, slug):
     producto = get_object_or_404(Producto, 
