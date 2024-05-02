@@ -8,7 +8,7 @@
 
     <h1>Checkout</h1>
     <div class="order-info">
-        <h3>Tu orden</h3>
+        <h3>Resumen del Pedido </h3>
         <ul>
             {% for item in cart %}
                 <li>
@@ -24,4 +24,9 @@
         <p><input type="submit" value="Realizar Orden"></p>
         {% csrf_token %}
     </form>
+    <!--<p class="text-right">
+        <a href="{% url "shop:producto_lista" %}" class="button
+        light">Continuar compra</a>
+       
+    </p>-->
 {% endblock %}

@@ -15,7 +15,8 @@ h1, h2, h3, h4, h5 , h6 {
 
 a {
     text-decoration:none;
-    color:#5993bb;
+    color:#77b6e2;
+    
 }
 
 a:hover {
@@ -24,7 +25,7 @@ a:hover {
 
 a.button, input[type="submit"] {
     color:#fff;
-    background:#5993bb;
+    background:#57b8ff;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -332,3 +333,24 @@ form div.field {
     color:#666;
     border-radius:4px;
 }
+
+.logo-carrito{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle
+}
+
+.cart-num{
+    color:#040404;
+    font-size: 20px;
+    vertical-align: middle
+}
+
+.nombre-logo{
+    color: #040404;
+    text-align: left;
+    
+    font-size:22px;
+    margin-right:10%;
+}
+
