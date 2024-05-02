@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}BreakFast{% endblock %}</title>
     <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <!--Favicon (logito de la pestaña) -->
+    <link rel="icon" href="{% static "images/refresco-de-hamburguesa.png" %}">
+     <!-- TIPOGRAFÍA DE LETRA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header">
@@ -15,8 +21,8 @@
     <div id="subheader">
         <div class="cart">
             {% with total_items=cart|length %}
-                {% if total_items > 0 %}
-                    Cesta
+                {% if total_items > 0 %}    
+                Cesta
                     <a href="{% url "cart:cart_detalle" %}">
                         {{ total_items }} Producto {{ total_items|pluralize }},
                         ${{ cart.get_total_precio }}
