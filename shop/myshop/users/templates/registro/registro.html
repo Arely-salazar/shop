@@ -1,0 +1,92 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!--CONTENEDOR PARA EL FORMULARIO-->
+<div class="div-principal">
+    <div class="div-inicio">
+        <!--INCIO DE FORMULARIO-->
+    <form class="form-order" method="POST">
+        {% csrf_token %}
+        <!--CONTENEDOR PARA INGRESAR EL NOMBRE DEL USUARIO-->
+        <div>
+            <!--LABEL PARA NOMBRE-->
+            <label class="label-form" for="id_primer_nombre">Nombre:</label>
+            <div>
+                <!--INGRESAR NOMBRE-->
+                <input type="text" id="id_primer_nombre" name="primer_nombre" maxlength="50" required="" class="input-form">  
+            </div>
+        </div>
+
+        <!--CONTENEDOR PARA INGRESAR EL APELLIDO DEL USUARIO-->
+        <div>
+            <!--LABEL PARA APELLIDO-->
+            <label class="label-form" for="id_apellido">Apellido:</label>
+            <div>
+                <!--INGRESAR APELLIDO-->
+                <input type="text" id="id_apellido" name="apellido" maxlength="50" required="" class="input-form">  
+            </div>
+        </div>
+
+        <!--CONTENEDOR PARA INGRESAR EL CORREO DEL USUARIO-->
+        <div>
+            <!--LABEL PARA CORREO-->
+            <label class="label-form" for="id_correo">Correo:</label>
+            <div>
+                <!--INGRESAR CORREO-->
+                <input type="email" id="id_correo" name="correo" maxlength="254" required="" class="input-form">  
+            </div>
+        </div>
+
+        <!--CONTENEDOR PARA INGRESAR EL NOMBRE DE USUARIO-->
+        <div>
+            <!--LABEL PARA USUARIO-->
+            <label class="label-form" for="id_username">Usuario:</label>
+            <div>
+                <!--INGRESAR NOMBRE DE USUARIO-->
+                <input type="text" id="id_username" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" class="input-form">  
+            </div>
+        </div>
+
+        <!--CONTENEDOR PARA INGRESAR LA CONTRASEÑA-->
+        <div>
+            <!--LABEL PARA CONTRASEÑA-->
+            <label class="label-form" for="id_password1">Contraseña:</label>
+            <div>
+                <!--INGRESAR CONTRASEÑA-->
+                <input type="password" id="id_password1" name="password1" autocomplete="new-password" required="" class="input-form">
+            </div>
+        </div>
+
+        <!--CONTENEDOR PARA CONFIRMAR LA CONTRASEÑA-->
+        <div>
+            <!--LABEL PARA CONFIRMAR CONTRASEÑA-->
+            <label class="label-form" for="id_password2">Confirmar contraseña:</label>
+            <div>
+                <!--INGRESAR CONTRASEÑA-->
+                <input type="password" id="id_password2" name="password2" autocomplete="new-password" required="" class="input-form">
+            </div>
+        </div>
+
+        <div class="errores">
+            {% if form.errors %}
+            <p>Error en el formulario:</p>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <!--BOTÓN PARA ENVIAR FORMULARIO-->
+        <p><input type="submit" name="efectivo" value="Registrate"></p>
+    </form>
+    </div>
+    
+</div>
+
+{% endblock %}

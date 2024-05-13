@@ -6,10 +6,14 @@
 {% endblock %}
 
 {% block content %}
+<!-- TÍTULO-->
     <h1>TODOS LOS PRODUCTOS</h1>
+    
+    <!-- TABLA PARA MOSTRAR TODOS LOS ELEMENTOS AGREGADOS AL CARRITO -->
     <table class="cart">
         <thead>
             <tr>
+                <!-- TÍTULO DE LAS COLUMNAS-->
                 <th>Imagen</th>
                 <th>Producto</th>
                 <th>Cantidad</th>
@@ -19,6 +23,7 @@
             </tr>  
         </thead>
         <tbody>
+            <!-- MOSTRAR LOS PRODUCTOS AGREGADOS AL CARRITO -->
             {% for item in cart %}
                 {% with producto=item.producto %}
                     <tr>
@@ -29,24 +34,30 @@
                         </td>
                         <td>{{ producto.nombre }}</td>
                         <td>
-                            <form action="{% url 'cart:cart_add' item.producto.id %}" method="post"></form>
-                                {{ item.update_quantity_form.quantity }}
-                                {{ item.update_quantity_form.override }}
-                                    <input type="submit" value="Update">
+                            <!-- FORM PARA ACTUALZAR LOS PRODUCTOS SI ES QUE SE AGREGAN MÁS -->
+                                <form action="{% url 'cart:cart_add' item.producto.id %}" method="post">
+                                    {{ item.update_quantity_form.quantity }}
+                                    {{ item.update_quantity_form.override }}
+                                    <input type="submit" value="Actualizar">
                                     {% csrf_token %}
-                            </form>
+                                </form>
                         </td>
                         <td>
+                            <!-- FORM PARA ELIMINAR PRODUCTOS -->
                             <form action="{% url 'cart:cart_remove' item.producto.id %}" method="post">
                                 <input type="submit" value="Eliminar">
+                                <!--<img src="{% static "images/actualizar.png" %}">-->
                                 {% csrf_token %}
                             </form>
                         </td>
+                        <!-- MOSTRAR LOS PRECIOS DE CADA PRODUCTO Y EL TOTAL -->
                         <td class="num">${{ item.precio }}</td>
                         <td class="num">${{ item.total_precio }}</td>
+                            
                     </tr>
                 {% endwith %}
             {% endfor %}
+            <!-- MOSTRAR EL TOTAL DE LOS PRODUCTOS -->
             <tr class="total">
                 <td>Total</td>
                 <td colspan="4"></td>
@@ -54,9 +65,16 @@
             </tr>
         </tbody>
     </table>
+    <!-- BOTONES PARA CONTINUAR CON LA COMPRA/ ORDENAR-->
     <p class="text-right">
-        <a href="{% url "shop:producto_lista" %}" class="button
-        light">Continuar compra</a>
-        <a href="{% url "orders:order_create" %}" class="button">Ordenar</a>
+        <a href="{% url "shop:producto_lista" %}" class="button light">Continuar compra</a>
+        <!-- VERIFICAR SI EL USUARIO INICIO SESIÓN -->
+        {% if user.is_authenticated %}
+            <!-- SI EL USUARIO YA INICIO SESIÓN LO REDIRIGE A LA OTRA PESTAÑA -->
+            <a href="{% url "orders:order_create" %}" class="button">Ordenar</a>
+        {% else %}
+            <!-- SI EL USUARIO NO HA INICIADO SESIÓN LO MANDA A INICIAR SESIÓN -->
+            <a href="{% url "users:iniciar_sesion" %}" class="button">Iniciar sesión para ordenar</a>
+        {% endif %}
     </p>
 {% endblock %}

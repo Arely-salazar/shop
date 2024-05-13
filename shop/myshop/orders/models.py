@@ -1,14 +1,13 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from shop.models import Producto
 
 # Create your models here.
+
 class Orden(models.Model):
     primer_nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     correo = models.EmailField()
-    direccion = models.CharField(max_length=250)
-    codigo_postal = models.CharField(max_length=20)
-    ciudad = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     pagado = models.BooleanField(default=False)
@@ -18,10 +17,9 @@ class Orden(models.Model):
         indexes = [
         models.Index(fields=['-created']),
         ]
-    
+
     def __str__(self):
-        return f'Orden {self.id}'
-    
+        return f'Orden {self.id}'  
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
     

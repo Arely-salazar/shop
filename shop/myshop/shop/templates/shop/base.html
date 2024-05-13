@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,39 +13,66 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <!--boostrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
 </head>
 <body>
-    <div id="header">
-    </div>
-
-    <!-- Panel de navegación -->  
-    <div id="subheader">
-        <div class="container-fluid">
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="cart">
+    <!--CABECERAAAA-->
+        <div id="subheader">
+            <!--LOGO DE LA EMPRESA-->
+            <div class="cart">
+                <a href="/" class="nombre-logo">Breakfast</a>
+            </div>
+            <!-- Panel de navegación -->  
+            <div class="container-navegacion">
+                <!-- FORMULARIO DE BÚSQUEDAD DE PRODUCTOS -->
+                <form  action="{% url 'shop:buscar_productos' %}" method="GET" class="d-flex">
+                    <input class="form-control" type="search" placeholder="Buscar productos..." aria-label="Search" name="q">
+                    <button>
+                        <img class="imagenes-subheader" src="{% static "images/archivo-de-busqueda.png" %}" alt="logo"> 
+                    </button>
+                        
+                    
+                </form>
+            </div>
             
-            <!--nombre de la empresa-->
-            <a href="/" class="nombre-logo">BreakFast</a>
-            {% with total_items=cart|length %}
-                {% if total_items > 0 %} 
-                    <a href="{% url "cart:cart_detalle" %}">
-                        <img class="logo-carrito" src="{% static "images/carrito.png" %}" alt="logo"> 
-                        <!-- Total de productos en el carrito-->
-                        <span class="cart-num">{{ total_items }}</span>
+            <!--MOSTRAR SI EL USUARIO HA INICIADO SESIÓN-->
+            <div class="inicio">
+                <!--VERIFICAR SI EL USUARIO YA ESTA INICIO SESIÓN-->
+               {% if user.is_authenticated %}
+                        <img class="imagenes-subheader" src="{% static "images/usuario.png" %}" alt="usuario">
+                        {{ user.username }} <a class="accesos" href="{% url "users:cerrar_sesion" %}">Cerrar Sesión</a>
+                <!--EL USUARIO NO HA INGRESADO-->
+               {% else %}
+                    <!--INICIAR SESIÓN-->
+                    <a  class="accesos" href="{% url "users:iniciar_sesion" %}">
+                        Iniciar Sesión
+                    </a>
+                    <!--REGISTRARSE SI EL USUARIO NO TIENEN UNA CUENTA-->
+                    <a class="accesos" href="{% url "users:Usuarios" %}">
+                        Registrate
+                   </a>
+               {% endif %}
+            </div>
+            <!--CONTROL DE PRODUCTOS AGREGADOS AL CARRITO-->
+            <div>
+                {% with total_items=cart|length %}
+                    {% if total_items > 0 %} 
+                        <a href="{% url "cart:cart_detalle" %}">
+                            <img class="imagenes-subheader" src="{% static "images/carrito.png" %}" alt="logo"> 
+                            <!-- Total de productos en el carrito-->
+                            <span class="cart-num">{{ total_items }}</span>
+                            </a>
+                    {% elif not order %}
+                        <a href="{% url "cart:cart_detalle" %}">
+                            <img class="imagenes-subheader" src="{% static "images/carrito.png" %}" alt="logo"> 
+                            <!-- Total de productos en el carrito-->
+                            <span class="cart-num">{{ total_items }}</span>
                         </a>
-                {% elif not order %}
-                    Your cart is empty.
-                {% endif %}
-            {% endwith %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+                
         </div>
-    </div>
+    
     <div id="content">
         {% block content %}
         {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Búsqueda de Productos
+{% endblock %}
+
+{% block content %}
+<div id="main" class="producto_lista">
+    <h1>Resultados de la Búsqueda</h1>
+    {% if query %}
+        <p>Mostrando resultados para: <strong>{{ query }}</strong></p>
+    {% endif %}
+    {% if resultados %}
+        {% for producto in resultados %}
+            <div class="item">
+                <a href="{{ producto.get_absolute_url }}">
+                    <img src="{% if producto.imagen %}{{ producto.imagen.url }}{% else %}{% static "img/no_image.png" %}{% endif  %}">
+                </a>
+                <a href="{{ producto.get_absolute_url}}"> {{ producto.nombre}}</a>
+                <br>
+            </div>      
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron resultados para la búsqueda.</p>
+    {% endif %}
+{% endblock %}

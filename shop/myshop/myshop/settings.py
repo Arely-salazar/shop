@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+#IMPORTAR LIBRERÍAS PARA LOS MENSAJES DE ERROR
+from django.contrib.messages import constants as mensajes_de_error
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-r=t2gu-zcg@jbsdq&h$0(w)%vhta69t#vj2-*favm2jc-m#o(&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.165', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +43,8 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'users.apps.UsersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -107,13 +112,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+USE_THOUSAND_SEPARATOR = True
+
+DECIMAL_SEPARATOR = '.'
+
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -130,3 +141,18 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
+
+#TAG PARA LOS TIPOS DE MENSAJES
+MESSAGE_TAG = {
+    mensajes_de_error.DEBUG: 'debug',
+    mensajes_de_error.INFO: 'info',
+    mensajes_de_error.SUCCESS: 'sucess',
+    mensajes_de_error.WARNING: 'warnig',
+    mensajes_de_error.ERROR: 'error',
+    
+}
+
+# CONFIGURACIÓN DE STRIPE
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51PFVBhCSMrSCnFHgYPfkpNK1AxiFg9X79KkEwFVxCsPnlaGgLT5CZbqltG6A1MNerJxUhXdz4Kd1N4jC4kYKYhRs00UaeuGcQN' # Publishable key
+STRIPE_SECRET_KEY = 'sk_test_51PFVBhCSMrSCnFHgoDJ227N4etNRI4XBhRp7FDSOQKkNnWzgojW9Xp1mVZx9chFqD6IeetfepYa5w21ITAzrdJGu00uTq9zA9U' # Secret key
+STRIPE_API_VERSION = '2022-08-01'

@@ -15,11 +15,16 @@
             </a>
         </h2>
         <p class="precio">${{ producto.precio }}</p>
-        <form action="{% url "cart:cart_add" producto.id %}" method="post">
-            {{ cart_product_form }}
-            {% csrf_token %}
-            <input type="submit" value="Add to cart">
-        </form>
-        {{ producto.descripcion|linebreaks }}
+        <!-- VERIFICAR SI HAY EN XISTENCIA -->
+        {% if producto.existencias != 0 %}
+            <form action="{% url "cart:cart_add" producto.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" value="Agregar al carrito">
+            </form>
+            {{ producto.descripcion|linebreaks }}
+        {% else %}
+            <p class="error-message">Lo sentimos, no hay stock disponible para este producto.</p>
+        {% endif %}
     </div>
 {% endblock %}

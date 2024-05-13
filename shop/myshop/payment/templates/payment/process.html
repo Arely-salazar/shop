@@ -1,0 +1,46 @@
+<!-- EXTENDER NUESTRO ARCHIVO BASE-->
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    Pay your order
+{% endblock %}
+
+{% block content %}
+    <!-- TÍTULO-->
+    <h1>Order Summary</h1>
+    <!-- TABLA PARA MOSTRAR TODOS LOS ELEMENTOS AGREGADOS AL CARRITO -->
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- MOSTRAR LOS PRODUCTOS AGREGADOS AL CARRITO -->
+            {% for item in orden.items.all %}
+                <tr class="row{% cycle "1" "2" %}">
+                    <td>
+                        <img src="{% if item.producto.imagen %}{{ item.producto.imagen.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+                    </td>
+                    <td>{{ item.producto.nombre }}</td>
+                    <td class="num">${{ item.precio }}</td>
+                    <td class="num">{{ item.quantity }}</td>
+                    <td class="num">${{ item.get_cost }}</td>
+                </tr>
+            {% endfor %}
+            <tr class="total">
+                <td colspan="4">Total</td>
+                <td class="num">${{ orden.get_total_cost }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="{% url 'payment:process' %}" method="post">
+        <input type="submit" value="Pagar">
+        {% csrf_token %}
+    </form>
+    {% endblock %}

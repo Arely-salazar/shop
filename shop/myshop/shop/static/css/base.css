@@ -1,4 +1,3 @@
-
 body {
     margin:0;
     padding:0;
@@ -7,25 +6,18 @@ body {
     font-weight: 70px;
     font-style: normal;
 }
-
-
-h1, h2, h3, h4, h5 , h6 {
-    font-family: 'Ubuntu', sans-serif; font-weight:normal;
-}
-
 a {
     text-decoration:none;
-    color:#77b6e2;
-    
+    color:#000000;
 }
 
 a:hover {
-    color:#77b6e2;
+    color:#ff00d0;
 }
 
 a.button, input[type="submit"] {
     color:#fff;
-    background:#57b8ff;
+    background:#000000;
     border-radius:4px;
     padding:10px 20px;
     font-size:14px;
@@ -35,14 +27,6 @@ a.button, input[type="submit"] {
 a.button.light {
     color:#666;
     background:#ededed;
-}
-
-.text-left {
-    text-align:left;
-}
-
-.text-right {
-    text-align:right;
 }
 
 table {
@@ -67,7 +51,7 @@ tbody tr.subtotal {
 }
 
 thead th, tbody tr.total {
-    background:#5993bb;
+    background:#000000;
     color:#fff;
     font-weight:bold;
 }
@@ -110,40 +94,20 @@ form p input {
     border-radius:4px;
 }
 
-ul.errorlist {
-   float:left;
-   color:#ff0000;
-   clear:both;
-   font-size:13px;
-   margin:0 0 0 10px;
-   padding:10px 0;
-}
-
-
-#header {
-    padding:10px 100px;
-    font-size:18px;
-    overflow:auto;
-}
-
 #subheader {
+    /* COLOR DE FONDO*/
     background:#ececec;
-    color:#444;
-    padding:15px 100px;
-    overflow:auto;
-}
-
-#header .logo {
-    font-family: 'Ubuntu', sans-serif;
-    float:left;
-    color:#333;
-    font-size:22px;
-    margin-right:10%;
-}
-
-#subheader .cart {
-    float:right;
-    padding-top:4px;
+    color:#343434;
+    /* arriba y abajo | izquierda y derecha */
+    padding: 15px 50px;
+    /* si recortar contenido, dibujar barras de desplazamiento o mostrar el contenido excedente en un elemento a nivel de bloque. */
+    /*overflow:hidden;*/
+    /* CONTENEDOR FLEXIBLE*/
+    display: flex;
+    /* Distribuir items uniformemente - El primer item al inicio, el último al final */
+    justify-content: space-between;
+    /* Alinear los elementos verticalmente */
+    align-items: center;
 }
 
 #content {
@@ -173,7 +137,7 @@ ul.errorlist {
 }
 
 #sidebar ul li.selected {
-    background:#5993bb;
+    background:#010101;
     border-radius:4px;
 }
 
@@ -199,7 +163,7 @@ ul.errorlist {
 .producto_lista .item img {
     width:200px;
     margin-bottom:8px;
-    height: auto;
+    height: 200px;
 }
 
 .producto_detalle {
@@ -236,11 +200,11 @@ ul.errorlist {
     background:#efefef;
     padding:10px 20px;
     color:#333;
-    border-bottom:4px solid #5993bb;
+    border-bottom:4px solid #ff00d0;
 }
 
 .order-info h3 {
-    color:#5993bb;
+    color:#000000;
 }
 
 .order-info ul li {
@@ -258,98 +222,108 @@ ul.errorlist {
     float:right;
 }
 
-.neg {
-    color:#dc1616;
-}
-
-.languages {
-   float:right;
-   padding-top:4px;
-   font-size:14px;
-}
-
-.languages ul {
-    list-style:none;
-    margin:0;
-    padding:0;
-    float:left;
-}
-
-.languages ul li {
-    float:left;
-    margin:0 0 0 10px;
-    font-size:14px;
-}
-
-.languages p {
-    float:left;
-    margin:0;
-}
-
-.recommendations {
-    clear:both;
-}
-
-.recommendations div {
-    float:left;
-}
-
-.recommendations img {
-    width:200px
-}
-
-.recommendations p {
-    clear:both;
-}
-
-.recommendations.cart {
-    width:60%;
-    float:left;
-    overflow:auto;
-}
-
-.recommendations.cart h3 {
-    margin-top:0;
-}
-
-.recommendations.cart .item {
-    margin-right:10px;
-}
-
-.recommendations.cart img {
-    width:120px;
-}
-
-/* braintree hosted fields */
-form div.field {
-    font-size:13px;
-    color:#666;
-    width:300px;
-    height:22px;
-    margin-bottom:10px;
-    padding:6px 12px;
-    border:0;
-    background:#efefef;
-    color:#666;
-    border-radius:4px;
-}
-
-.logo-carrito{
+.imagenes-subheader{
     width: 20px;
     height: 20px;
-    vertical-align: middle
+    vertical-align: middle;
 }
 
 .cart-num{
     color:#040404;
     font-size: 20px;
-    vertical-align: middle
+    vertical-align: middle;
+    float: right; /* Coloca el elemento a la derecha */
+    padding-top: 4px;
 }
 
 .nombre-logo{
     color: #040404;
-    text-align: left;
-    
-    font-size:22px;
-    margin-right:10%;
+    margin-right: 50px;
+    margin-left: 20px;  
+}
+
+.form-control{
+    border-radius: 5px;
+    width: 300px;
+    height: 10%;
+}
+
+.container-navegacion{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 10%;
+}
+
+.input-form {
+    border-radius: 4px;
+    width: 300px;
+    height: 100%;
+}
+.label-form{
+    padding-bottom: 20%;
+}
+
+.contenedor-form{
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+
+.errores{
+    color: red;
+}
+
+.div-inicio {
+    background: #d0d0d0;
+    width: 70%;
+    max-height: 500px;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.div-principal {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*outline: solid 1px black;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#id_quantity{
+    margin: 20px;
+}
+.form-order label {
+    clear: both;
+    font-size: 14px;
+    padding-bottom: 4px;
+}
+
+.form-order input {
+    width: 300px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border: 0;
+    background: #efefef;
+    color: #666;
+    border-radius: 4px;
+    display: block; /* Hacer que los input ocupen toda la anchura disponible */
+}
+
+.form-order div {
+    margin-bottom: 10px; /* Agregar espacio entre los elementos del formulario */
+}
+
+.form-order input[type="submit"] {
+    width: auto; /* Restaurar el ancho predeterminado del botón de envío */
+}
+
+.accesos{
+    padding: 20px;
 }

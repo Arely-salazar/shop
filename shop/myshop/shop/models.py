@@ -1,8 +1,9 @@
 from django.db import models
 from django.urls import reverse
 
-# Create your models here.
+# BD PARA LA CATEGORIA Y PRODUCTOS
 
+# DEFINIENDO LA CATEGORIA DE LOS PRODUCTOS
 class Categoria(models.Model):
     nombre = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
@@ -19,7 +20,7 @@ class Categoria(models.Model):
     def get_absolute_url(self):
         return reverse('shop:producto_lista_by_categoria',
                         args=[self.slug])
-
+# DEFINIENDO  LOS PRODUCTOS
 class Producto(models.Model):
     categoria = models.ForeignKey(Categoria, related_name='Productos', on_delete=models.CASCADE)
     nombre = models.CharField(max_length=200)
@@ -28,6 +29,7 @@ class Producto(models.Model):
     descripcion = models.TextField(blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     disponibilidad = models.BooleanField(default=True)
+    existencias = models.PositiveIntegerField(default=0)  # Campo para las existencias del producto
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -44,3 +46,7 @@ class Producto(models.Model):
     def get_absolute_url(self):
         return reverse('shop:producto_detalle',
                         args=[self.id, self.slug])
+    
+    @property
+    def esta_agotado(self):
+        return self.existencias <= 0 

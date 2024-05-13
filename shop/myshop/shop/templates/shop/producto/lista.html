@@ -29,7 +29,13 @@
             </a>
             <a href="{{ producto.get_absolute_url}}"> {{ producto.nombre}}</a>
             <br>
-            ${{ producto.precio }}
+            <!-- VERIFICAR SI HAY EXISTENCIA DE PRODUCTO Y SI HAY MOSTRAR EL PRECIO -->
+            {% if producto.existencias > 0 %}
+                ${{ producto.precio }}
+            <!-- SI NO HAY EXISTENCIA MOSTRAR QUE ESTA AGOTADO  -->
+            {% else %}
+                Agotado
+            {% endif %}
         </div>
     {% endfor %}
 </div>
