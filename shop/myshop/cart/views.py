@@ -22,7 +22,6 @@ def cart_add(request, producto_id):
                     override_quantity=cd['override'])
             return redirect('cart:cart_detalle')
     else:
-        
         return redirect('shop:producto_detalle', producto.id, producto.slug)
 
    

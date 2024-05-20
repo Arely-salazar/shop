@@ -8,15 +8,16 @@ class Categoria(models.Model):
     nombre = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
 
+    # PERSONALIZAR EL ORDEN, INDEXACIÓN Y NOMBRES
     class Meta:
         ordering = ['nombre']
         indexes = [models.Index(fields=['nombre']),]
         verbose_name = 'categoria'
         verbose_name_plural = 'categorias'
-
+    # REGRESAR EL NOMBRE 
     def __str__(self):
         return self.nombre
-    
+    # GENERAR LA URL
     def get_absolute_url(self):
         return reverse('shop:producto_lista_by_categoria',
                         args=[self.slug])

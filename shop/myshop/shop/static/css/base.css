@@ -36,7 +36,7 @@ table {
 }
 
 table th, table td {
-    text-align:left;
+    text-align:center;
     font-size:14px;
     padding:10px;
     margin:0;
@@ -65,7 +65,7 @@ table.cart img {
 }
 
 tbody td.num {
-    text-align:right;
+    text-align:center;
 }
 
 td input[type="submit"] {

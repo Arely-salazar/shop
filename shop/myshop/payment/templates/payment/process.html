@@ -3,12 +3,12 @@
 {% load static %}
 
 {% block title %}
-    Pay your order
+    Pedido
 {% endblock %}
 
 {% block content %}
     <!-- TÍTULO-->
-    <h1>Order Summary</h1>
+    <h1>Resumen del Pedido</h1>
     <!-- TABLA PARA MOSTRAR TODOS LOS ELEMENTOS AGREGADOS AL CARRITO -->
     <table class="cart">
         <thead>
@@ -29,7 +29,7 @@
                     </td>
                     <td>{{ item.producto.nombre }}</td>
                     <td class="num">${{ item.precio }}</td>
-                    <td class="num">{{ item.quantity }}</td>
+                    <td class="num">{{ item.cantidad }}</td>
                     <td class="num">${{ item.get_cost }}</td>
                 </tr>
             {% endfor %}
